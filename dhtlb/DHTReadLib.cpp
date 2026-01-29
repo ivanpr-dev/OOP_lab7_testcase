@@ -4,18 +4,18 @@ DHTReadLib::DHTReadLib(uint8_t pin, uint8_t type) : dhtPIN(pin), dhtTYPE(type), 
     dht.begin();
 }
 
-void DHTReadLib::readDHT() {
-    unsigned long prevMillis = millis();
-    if (currentMillis - prevMillis >= interval) {
+void DHTReadLib::readDHTInterval(int interval) {
+    int intervalDHT = interval;
+    unsigned long currentMillis = millis();
+    if (currentMillis - prevMillis >= intervalDHT) {
         prevMillis = currentMillis;
+        
         float temperature = dht.readTemperature();
         if (isnan(temperature)) {
             Serial.println("Failed to read from DHT sensor!");
         } else {
             Serial.print("Temperature: ");
             Serial.println(temperature);
-            delay(2000);
         }
-    }   
+    }  
 }
-
