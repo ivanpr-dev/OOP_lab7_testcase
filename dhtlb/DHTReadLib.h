@@ -13,10 +13,10 @@ private:
     DHT dht;
     unsigned long currentMillis;
     unsigned long prevMillis = 0;
-    int interval = 2000;
+    int intervalDHT;
 public:
     DHTReadLib(uint8_t pin, uint8_t type);
-    void readDHT();
+    void readDHTInterval(int interval);
 };
 
 #endif // DHTREADLIB_H
